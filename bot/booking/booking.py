@@ -1,3 +1,5 @@
+from random import randint
+from time import sleep
 import booking.constants as const
 import os
 from selenium import webdriver
@@ -24,6 +26,7 @@ class Booking(webdriver.Chrome):
         search_field = self.find_element(By.ID, 'ss')
         search_field.clear()
         search_field.send_keys(place_to_go)
+        sleep(randint(1, 2))
         first_result = self.find_element(By.CSS_SELECTOR, 'li[data-i="0"]')
         first_result.click()
 
@@ -32,6 +35,38 @@ class Booking(webdriver.Chrome):
             By.CSS_SELECTOR, f'td[data-date="{check_in_date}"]')
         check_in_element.click()
 
+        sleep(randint(2, 5))
+
         check_out_element = self.find_element(
             By.CSS_SELECTOR, f'td[data-date="{check_out_date}"]')
         check_out_element.click()
+
+    def select_guest(self, num_of_adults):
+        toggle = self.find_element(By.ID, "xp__guests__toggle")
+        toggle.click()
+        adult_val_el = self.find_element(
+            By.ID, 'group_adults')
+        adult_count = int(adult_val_el.get_attribute('value'))
+
+        while adult_count > num_of_adults:
+            print(adult_count)
+            decr = self.find_element(
+                By.CSS_SELECTOR, 'button[aria-label="Decrease number of Adults"]')
+            sleep(randint(1, 2))
+            decr.click()
+            adult_count = int(adult_val_el.get_attribute('value'))
+            print(adult_count)
+
+        while adult_count < num_of_adults:
+            print(adult_count)
+            incr = self.find_element(
+                By.CSS_SELECTOR, 'button[aria-label="Increase number of Adults"]')
+            sleep(randint(1, 2))
+            incr.click()
+            adult_count = int(adult_val_el.get_attribute('value'))
+            print(adult_count)
+
+    def search(self):
+        search_button = self.find_element(
+            By.CLASS_NAME, "sb-searchbox__button")
+        search_button.click()
