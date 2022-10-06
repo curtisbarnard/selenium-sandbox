@@ -26,3 +26,12 @@ class Booking(webdriver.Chrome):
         search_field.send_keys(place_to_go)
         first_result = self.find_element(By.CSS_SELECTOR, 'li[data-i="0"]')
         first_result.click()
+
+    def select_dates(self, check_in_date, check_out_date):
+        check_in_element = self.find_element(
+            By.CSS_SELECTOR, f'td[data-date="{check_in_date}"]')
+        check_in_element.click()
+
+        check_out_element = self.find_element(
+            By.CSS_SELECTOR, f'td[data-date="{check_out_date}"]')
+        check_out_element.click()
