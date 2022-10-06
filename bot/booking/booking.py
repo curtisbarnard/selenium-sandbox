@@ -1,9 +1,12 @@
 from random import randint
 from time import sleep
-import booking.constants as const
 import os
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+import booking.constants as const
+from booking.filters import Filters
 
 
 class Booking(webdriver.Chrome):
@@ -70,3 +73,6 @@ class Booking(webdriver.Chrome):
         search_button = self.find_element(
             By.CLASS_NAME, "sb-searchbox__button")
         search_button.click()
+
+    def apply_filters(self):
+        filter = Filters(driver=self)
