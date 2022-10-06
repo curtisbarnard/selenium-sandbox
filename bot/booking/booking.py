@@ -1,6 +1,7 @@
 import booking.constants as const
 import os
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class Booking(webdriver.Chrome):
@@ -18,3 +19,10 @@ class Booking(webdriver.Chrome):
 
     def land_first_page(self):
         self.get(const.BASE_URL)
+
+    def select_place_to_go(self, place_to_go):
+        search_field = self.find_element(By.ID, 'ss')
+        search_field.clear()
+        search_field.send_keys(place_to_go)
+        first_result = self.find_element(By.CSS_SELECTOR, 'li[data-i="0"]')
+        first_result.click()
