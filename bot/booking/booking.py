@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 
 import booking.constants as const
 from booking.filters import Filters
+from booking.report import Report
 
 
 class Booking(webdriver.Chrome):
@@ -81,3 +82,9 @@ class Booking(webdriver.Chrome):
         filter.apply_star_rating(4, 5)
         sleep(randint(2, 4))
         filter.sort_by_lowest_price()
+
+    def report_results(self):
+        property_container = self.find_element(By.CLASS_NAME, "d4924c9e74")
+
+        report = Report(property_container)
+        report.pull_titles()

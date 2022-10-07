@@ -9,6 +9,8 @@ try:
         bot.select_guest(2)
         bot.search()
         bot.apply_filters()
+        bot.refresh()
+        bot.report_results()
 except Exception as e:
     if 'in PATH' in str(e):
         print(
