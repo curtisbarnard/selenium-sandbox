@@ -1,6 +1,7 @@
 from random import randint
 from time import sleep
 import os
+from prettytable import PrettyTable
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -86,4 +87,8 @@ class Booking(webdriver.Chrome):
         property_container = self.find_element(By.CLASS_NAME, "d4924c9e74")
 
         report = Report(property_container)
-        print(report.pull_property_attributes())
+        table = PrettyTable(
+            field_names=["Hotel Name", "Hotel Price", "Hotel Score"]
+        )
+        table.add_rows(report.pull_property_attributes())
+        print(table)
