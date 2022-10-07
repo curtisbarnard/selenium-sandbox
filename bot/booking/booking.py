@@ -19,7 +19,6 @@ class Booking(webdriver.Chrome):
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         super(Booking, self).__init__(options=options)
         self.implicitly_wait(15)
-        self.maximize_window()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.teardown:
@@ -87,4 +86,4 @@ class Booking(webdriver.Chrome):
         property_container = self.find_element(By.CLASS_NAME, "d4924c9e74")
 
         report = Report(property_container)
-        report.pull_titles()
+        print(report.pull_property_attributes())

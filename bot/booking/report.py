@@ -11,8 +11,18 @@ class Report:
         return self.boxes_section_element.find_elements(
             By.CSS_SELECTOR, 'div[data-testid="property-card"]')
 
-    def pull_titles(self):
+    def pull_property_attributes(self):
+        collection = []
         for property in self.properties:
             hotel_name = property.find_element(
                 By.CSS_SELECTOR, 'div[data-testid="title"]').get_attribute('innerHTML').strip()
-            print(hotel_name)
+            hotel_price = property.find_element(
+                By.CSS_SELECTOR, 'span[class~="bd73d13072"]').get_attribute('innerHTML').strip()
+            hotel_score = property.find_element(
+                By.CSS_SELECTOR, 'div[aria-label*="Scored"]').get_attribute('innerHTML').strip()
+
+            collection.append(
+                [hotel_name, hotel_price, hotel_score]
+            )
+
+        return collection
