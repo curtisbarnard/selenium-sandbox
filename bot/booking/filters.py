@@ -19,3 +19,11 @@ class Filters:
                     check_box = element.find_element(
                         By.CLASS_NAME, 'bbdb949247')
                     check_box.click()
+
+    def sort_by_lowest_price(self):
+        dropdown_btn = self.driver.find_element(
+            By.CSS_SELECTOR, 'button[data-testid="sorters-dropdown-trigger"]')
+        dropdown_btn.click()
+        price_btn = self.driver.find_element(
+            By.CSS_SELECTOR, 'button[data-id="price"]')
+        price_btn.click()

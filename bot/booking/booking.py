@@ -77,3 +77,5 @@ class Booking(webdriver.Chrome):
     def apply_filters(self):
         filter = Filters(driver=self)
         filter.apply_star_rating(4, 5)
+        sleep(randint(2, 4))
+        filter.sort_by_lowest_price()
