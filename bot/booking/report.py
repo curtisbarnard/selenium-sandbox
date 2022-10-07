@@ -21,7 +21,7 @@ class Report:
             hotel_price_el = property.find_elements(
                 By.CSS_SELECTOR, 'span[class~="bd73d13072"]')
 
-            if (len(hotel_price_el) == 0):
+            if not hotel_price_el:
                 hotel_price_el = property.find_elements(
                     By.CSS_SELECTOR, 'span[data-testid="price-and-discounted-price"]')
 
