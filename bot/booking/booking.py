@@ -55,13 +55,11 @@ class Booking(webdriver.Chrome):
         adult_count = int(adult_val_el.get_attribute('value'))
 
         while adult_count > num_of_adults:
-            print(adult_count)
             decr = self.find_element(
                 By.CSS_SELECTOR, 'button[aria-label="Decrease number of Adults"]')
             sleep(randint(1, 2))
             decr.click()
             adult_count = int(adult_val_el.get_attribute('value'))
-            print(adult_count)
 
         while adult_count < num_of_adults:
             print(adult_count)
@@ -70,7 +68,6 @@ class Booking(webdriver.Chrome):
             sleep(randint(1, 2))
             incr.click()
             adult_count = int(adult_val_el.get_attribute('value'))
-            print(adult_count)
 
     def search(self):
         search_button = self.find_element(
