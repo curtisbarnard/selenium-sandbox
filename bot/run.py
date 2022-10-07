@@ -7,3 +7,4 @@ with Booking() as bot:
     bot.select_dates('2022-10-15', '2022-10-30')
     bot.select_guest(2)
     bot.search()
+    bot.apply_filters()
